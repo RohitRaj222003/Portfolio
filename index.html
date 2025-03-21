@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Raj - Personal Portfolio</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+        }
+        
+        .profile-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #3498db;
+        }
+        
+        /* Experience & Education */
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #3498db;
+        }
+        
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .timeline-item .date {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-item ul {
+            padding-left: 20px;
+        }
+        
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 0.8rem;
+            color: #3498db;
+        }
+        
+        .skill-category ul {
+            list-style-type: none;
+        }
+        
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .skill-category li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        /* Projects */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: white;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .project-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tag {
+            background-color: #e1f0fa;
+            color: #3498db;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .project-link:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+        
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #34495e;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: #3498db;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-item {
+                padding-left: 25px;
+            }
+            
+            .timeline-item::before {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Welcome to My Portfolio</h1>
+            <div class="profile-container">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQE2v0yQuKFexw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719024725114?e=1746662400&v=beta&t=T1Nrn3untmhil9B_XfKNn3PPt7NrJ5jKL1uVORUvl_s" alt="Rohit Raj" class="profile-image">
+                <div class="profile-text">
+                    <h1>Rohit Raj</h1>
+                    <p>Data Analyst | Ex Office Administrator | Ex Process Associate</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section id="about">
+                <h2>About Me</h2>
+                <p>Detail-oriented and analytical professional with experience in MIS reporting, office administration, and back-office operations. Proficient in MS Excel (Advanced), SQL, Power BI, and Tally with strong data management, process optimization, and documentation skills. Adept at handling reports, managing databases, coordinating office tasks, and ensuring smooth operational workflows. A team player with excellent communication and problem-solving abilities, eager to contribute to organizational efficiency.</p>
+            </section>
+            
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="projects-container">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">E-commerce Delivery Analytics</h3>
+                            <p class="project-description">This project analyzes e-commerce delivery efficiency, refund trends, and customer feedback across platforms like Blinkit, JioMart, and Swiggy Instamart. The goal is to uncover patterns in refunds, delivery performance, and product sales to improve logistics and customer satisfaction.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Data Analysis</span>
+                                <span class="project-tag">Excel</span>
+                                <span class="project-tag">E-commerce</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/RohitRaj222003/Ecommerce-Delivery-Analytics" target="_blank" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">Product Sales Analytics</h3>
+                            <p class="project-description">A comprehensive analysis of product sales data to identify trends, top-performing products, and sales patterns. This project uses data visualization and statistical analysis to provide actionable insights for business decision-making.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Sales Analysis</span>
+                                <span class="project-tag">Data Visualization</span>
+                                <span class="project-tag">Business Intelligence</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/RohitRaj222003/Product-Sales-Analytics" target="_blank" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="skills">
+                <h2>Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Data Analysis & MIS</h3>
+                        <ul>
+                            <li>Excel (Advanced – VLOOKUP, Pivot Tables, Macros)</li>
+                            <li>SQL</li>
+                            <li>Power BI</li>
+                            <li>Tableau</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Reporting & Data Management</h3>
+                        <ul>
+                            <li>Data Cleaning</li>
+                            <li>Report Automation</li>
+                            <li>Dashboard Creation</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Database Management</h3>
+                        <ul>
+                            <li>SQL Queries</li>
+                            <li>Joins</li>
+                            <li>CTEs</li>
+                            <li>Window Functions</li>
+                            <li>Stored Procedures</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Back-Office Operations</h3>
+                        <ul>
+                            <li>Payment Settlements</li>
+                            <li>Process Optimization</li>
+                            <li>Record-Keeping</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Administrative & Office Management</h3>
+                        <ul>
+                            <li>Office Coordination</li>
+                            <li>Inventory Management</li>
+                            <li>E-Tender Processing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Technical Proficiency</h3>
+                        <ul>
+                            <li>Tally</li>
+                            <li>MS Office (Excel, Word, PowerPoint)</li>
+                            <li>ERP & CRM Systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Soft Skills</h3>
+                        <ul>
+                            <li>Communication</li>
+                            <li>Problem-Solving</li>
+                            <li>Time Management</li>
+                            <li>Team Collaboration</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="experience">
+                <h2>Experience</h2>
+                
+                <div class="timeline-item">
+                    <h3>Admin & Data Reporting Analyst</h3>
+                    <div class="date">Durable Polymer, Lucknow | June 2024 – Feb 2025</div>
+                    <ul>
+                        <li>Designed MIS reports and dashboards using Excel to track company performance.</li>
+                        <li>Automated data cleaning and processing tasks in Excel, reducing manual work by 30%.</li>
+                        <li>Managed and optimized a database of 10,000+ records, improving reporting efficiency by 40%.</li>
+                        <li>Managed E-Tender Portal, ensuring timely and accurate submissions of tenders.</li>
+                        <li>Handled email and phone correspondence, maintaining smooth communication with stakeholders.</li>
+                        <li>Organized and maintained office files and records, ensuring easy accessibility.</li>
+                        <li>Monitored office supplies and inventory, ensuring seamless day-to-day operations.</li>
+                        <li>Provided process support to enhance office efficiency and optimize administrative workflows.</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Process Associate</h3>
+                    <div class="date">HCL Tech, Lucknow | Apr 2024 – May 2024</div>
+                    <ul>
+                        <li>Managed payment settlements from insurance companies to service providers with precision.</li>
+                        <li>Ensured accurate data processing and documentation for financial transactions.</li>
+                        <li>Developed Excel-based financial reports to track payment trends.</li>
+                        <li>Coordinated with internal teams to resolve discrepancies in payment processing.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="education">
+                <h2>Education</h2>
+                
+                <div class="timeline-item">
+                    <h3>Bachelor of Arts</h3>
+                    <div class="date">Lucknow University, Lucknow | Expected May 2027</div>
+                    <p>Currently pursuing a Bachelor of Arts degree.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Coursework in Bachelor of Science (Cognitive Science)</h3>
+                    <div class="date">DayalBagh Educational Institute, Agra | April 2020 – December 2022</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Inter (10+2)</h3>
+                    <div class="date">V. M. High School and Inter College, Siwan | May 2018 – February 2020</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Metric (10th)</h3>
+                    <div class="date">V. M. High School and Inter College, Siwan | May 2016 – February 2018</div>
+                </div>
+            </section>
+            
+            <section id="certifications">
+                <h2>Certifications & Achievements</h2>
+
+
+                <div class="timeline-item">
+                    <h3>Bronze Trophy Awarded in SQL</h3>
+                    <div class="date">Oracle Corportion | March 2025</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>AI Tool & ChatGPT</h3>
+                    <div class="date">be10x | February 2025</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>MS Excel</h3>
+                    <div class="date">elearnmarkets | May 2022</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Career Edge</h3>
+                    <div class="date">TCSION Digital Learning Hub | April 2020</div>
+                </div>
+            </section>
+            
+            <section id="languages">
+                <h2>Languages</h2>
+                <ul>
+                    <li>Hindi (Native)</li>
+                    <li>English (Proficient)</li>
+                    <li>Bhojpuri (Native)</li>
+                </ul>
+            </section>
+            
+            <section id="hobbies">
+                <h2>Hobbies</h2>
+                <ul>
+                    <li>Playing Chess</li>
+                    <li>Listening to Music</li>
+                </ul>
+            </section>
+            
+            <section id="contact">
+                <h2>Contact Me</h2>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://github.com/RohitRaj222003" target="_blank" class="social-icon" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <a href="http://www.linkedin.com/in/rohit-raj-882b9326a" target="_blank" class="social-icon" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="mailto:rohitraj1501200@gmail.com" class="social-icon" aria-label="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="tel:+918709198251" class="social-icon" aria-label="Phone">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </a>
+            </div>
+            <p>Address: Himalayan City, Aurangabad Jagir, Bijnor Road, Lucknow – 226014</p>
+            <p>&copy; 2025 Rohit Raj. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
